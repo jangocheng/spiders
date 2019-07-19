@@ -3,7 +3,6 @@ import csv
 import datetime
 import requests
 
-# 知乎有反爬虫，加入http headers伪装浏览器
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36",
     "Connection": "keep-alive",

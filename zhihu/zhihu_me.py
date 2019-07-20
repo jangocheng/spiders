@@ -41,4 +41,4 @@ if __name__ == '__main__':
         print(f'Refresh statistical data on {today}')
     except Exception as ex:
         writer.writerow([today, 'null', 'null', 'null', 'null', 'null'])
-        exit('Error occurred when calling zhihu api and parsing response!')
+        print('Error occurred when calling zhihu api and parsing response!')

@@ -22,16 +22,23 @@ def open_statistic_csv(filename):
 
 
 if __name__ == '__main__':
-    today = datetime.date.today().strftime('%Y-%m-%d')
-
-    r = requests.get(zhihu_api, headers=headers)
-    user = r.json()
-
-    user_name = user['name']
-    voteup_count = user['voteup_count']
-    follower_count = user['follower_count']
-    favorited_count = user['favorited_count']
-    thanked_count = user['thanked_count']
+    today = datetime.date.today().strftime('%d/%m/%Y')
 
     writer = open_statistic_csv('my_zhihu_statistic.csv')
-    writer.writerow([today, user_name, voteup_count, follower_count, favorited_count, thanked_count])
+    
+    # noinspection PyBroadException
+    try:
+        r = requests.get(zhihu_api, headers=headers)
+        user = r.json()
+
+        user_name = user['name']
+        voteup_count = user['voteup_count']
+        follower_count = user['follower_count']
+        favorited_count = user['favorited_count']
+        thanked_count = user['thanked_count']
+
+        writer.writerow([today, user_name, voteup_count, follower_count, favorited_count, thanked_count])
+        print(f'Refresh statistical data on {today}')
+    except Exception as ex:
+        writer.writerow([today, 'null', 'null', 'null', 'null', 'null'])
+        exit('Error occurred when calling zhihu api and parsing response!')

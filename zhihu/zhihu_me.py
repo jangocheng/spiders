@@ -14,18 +14,18 @@ zhihu_api = f'https://www.zhihu.com/api/v4/members/{user_id}?include=follower_co
 
 
 def open_statistic_csv(filename):
-    if not os.path.isfile(filename):
-        csv_writer = csv.writer(open(filename, 'w'))
-        csv_writer.writerow(['Date', 'User', 'Likes', 'Follower number', 'Favorite number', 'Thankfulness number'])
-        return csv_writer
-    return csv.writer(open(filename, 'a+'))
+    if os.path.isfile(filename):
+        return csv.writer(open(filename, 'a+'))
+    csv_writer = csv.writer(open(filename, 'w'))
+    csv_writer.writerow(['Date', 'User', 'Likes', 'Follower number', 'Favorite number', 'Thankfulness number'])
+    return csv_writer
 
 
 if __name__ == '__main__':
     today = datetime.date.today().strftime('%d/%m/%Y')
 
     writer = open_statistic_csv('my_zhihu_statistic.csv')
-    
+
     # noinspection PyBroadException
     try:
         r = requests.get(zhihu_api, headers=headers)

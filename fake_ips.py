@@ -1,5 +1,6 @@
 # 该脚本是用来伪造不同 IP 访问点击某推广链接，可用于一些网站的推广任务，一般是
 # 要求用户转发个人专属的推广链接给好友，要求有多少点击量就奖赏金币什么的。
+# 代理 IP 池: https://github.com/jhao104/proxy_pool
 
 import time
 import requests
